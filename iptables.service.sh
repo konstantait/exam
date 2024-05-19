@@ -15,19 +15,20 @@ if [[ -z "$IPTABLES" ]]; then
   IPTABLES=$(which iptables)
 fi
 
+# Clear All Rules
+$IPTABLES -F
+$IPTABLES -t nat -F
+$IPTABLES -t mangle -F
+$IPTABLES -X
+$IPTABLES -t nat -X
+$IPTABLES -t mangle -X
+
 # NAT
 $IPTABLES -t nat -A POSTROUTING -o $WAN -j MASQUERADE
+# $IPTABLES -t nat -A POSTROUTING -o $WAN -s 192.168.100.0/255.255.255.0 -j SNAT --to-source $WANIP
 $IPTABLES -t nat -I PREROUTING -p tcp -d $WAN_IP --dport $NODE1_WAN_PORT -j DNAT --to-destination $NODE1_IP:22
 $IPTABLES -t nat -I POSTROUTING -p tcp -s $NODE1_IP --sport 22 -j SNAT --to-source $WAN_IP:$NODE1_WAN_PORT
 
-# $IPTABLES -t nat -A POSTROUTING -o $WAN -s 192.168.100.0/255.255.255.0 -j SNAT --to-source 10.102.0.35
-# Clear All Rules
-# $IPTABLES -F
-# $IPTABLES -t nat -F
-# $IPTABLES -t mangle -F
-# $IPTABLES -X
-# $IPTABLES -t nat -X
-# $IPTABLES -t mangle -X
 
 # Allowing Loopback Connections
 # $IPTABLES -A INPUT -i $LOIF -j ACCEPT

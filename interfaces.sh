@@ -6,7 +6,7 @@ cat /etc/network/interfaces
 cp /etc/network/interfaces{,.default}
 
 # server
-sudo sed -i "s|allow-hotplug enp0s3|auto enp0s3|g" /etc/network/interfaces
+# sudo sed -i "s|allow-hotplug enp0s3|auto enp0s3|g" /etc/network/interfaces
 
 sudo tee -a /etc/network/interfaces >/dev/null <<EOF
 
