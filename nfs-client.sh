@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 sudo cat /etc/fstab
-sudo cp /etc/fstab{.default}
+sudo cp /etc/fstab{,.default}
 
 sudo apt-get -y install nfs-common
 sudo mkdir -p /nfs/general

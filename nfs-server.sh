@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 apt-get -y install nfs-kernel-server
+
 cat /etc/exports
-cp /etc/exports{.default}
+cp /etc/exports{,.default}
 
 mkdir -p /srv/nfs/general
 mkdir -p /srv/nfs/home

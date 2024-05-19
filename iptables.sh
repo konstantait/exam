@@ -3,7 +3,7 @@
 apt-get -y install iptables
 
 cat /etc/sysctl.conf
-cp /etc/sysctl.conf{.default}
+cp /etc/sysctl.conf{,.default}
 
 # echo 1 > /proc/sys/net/ipv4/ip_forward
 echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf

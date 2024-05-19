@@ -4,7 +4,7 @@ apt-get -y install vsftpd
 
 cat /etc/ftpusers
 cat /etc/vsftpd.conf | grep "^[^#;]"
-cp /etc/vsftpd.conf{.default}
+cp /etc/vsftpd.conf{,.default}
 
 FTP_PATH=$(cat /etc/passwd | grep -w ftp | cut -d':' -f6)
 mkdir -p "${FTP_PATH}/upload"

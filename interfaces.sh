@@ -3,7 +3,7 @@
 ip a
 
 cat /etc/network/interfaces
-cp /etc/network/interfaces /etc/network/interfaces.default
+cp /etc/network/interfaces{,.default}
 
 # server
 sudo sed -i "s|allow-hotplug enp0s3|auto enp0s3|g" /etc/network/interfaces
