@@ -6,4 +6,4 @@ systemctl status sshd
 
 wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.sh -O /root/iptables.sh 
 chmod +x /root/iptables.sh
-/etc/systemd/system
+wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.service -O /etc/systemd/system/iptables.service
