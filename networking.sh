@@ -19,3 +19,5 @@ iface enp0s8 inet static
 EOF
 
 ifdown enp0s8 && ifup enp0s8
+ifdown --exclude=lo -a && ifup --exclude=lo -a
+

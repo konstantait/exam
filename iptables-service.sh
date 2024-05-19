@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-su -
-apt-get update && apt-get -y install ssh iptables git mc
-systemctl status sshd
+apt-get -y install iptables
 
 cat /etc/sysctl.conf
-echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
+
 # echo 1 > /proc/sys/net/ipv4/ip_forward
+echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
 sysctl -p
 iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 
