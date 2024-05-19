@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-su -
-apt-get update && apt-get -y install ssh git mc
-systemctl status sshd
-
-wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.sh -O /root/iptables.sh 
-chmod +x /root/iptables.sh
-wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.service -O /etc/systemd/system/iptables.service

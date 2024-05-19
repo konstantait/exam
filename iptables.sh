@@ -13,9 +13,9 @@ if [[ -z "$IPTABLES" ]]; then
 fi
 
 # NAT
-$ECHO 1 > /proc/sys/net/ipv4/ip_forward
 $IPTABLES -t nat -A POSTROUTING -o $WAN -j MASQUERADE
 
+# $IPTABLES -t nat -A POSTROUTING -o $WAN -s 192.168.100.0/255.255.255.0 -j SNAT --to-source 10.102.0.35
 # Clear All Rules
 # $IPTABLES -F
 # $IPTABLES -t nat -F
