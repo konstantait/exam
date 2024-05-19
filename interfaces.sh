@@ -3,6 +3,7 @@
 ip a
 
 cat /etc/network/interfaces
+cp /etc/network/interfaces /etc/network/interfaces.default
 
 # server
 sudo sed -i "s|allow-hotplug enp0s3|auto enp0s3|g" /etc/network/interfaces
@@ -18,6 +19,8 @@ iface enp0s8 inet static
    broadcast 192.168.100.255
 EOF
 
+# nodes set 
+
 ifdown enp0s8 && ifup enp0s8
-ifdown --exclude=lo -a && ifup --exclude=lo -a
+#ifdown --exclude=lo -a && ifup --exclude=lo -a
 

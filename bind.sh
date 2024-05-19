@@ -4,8 +4,10 @@ apt-get -y install bind9 dnsutils
 
 cat /etc/resolv.conf
 cat /etc/bind/named.conf.options
+cp /etc/resolv.conf /etc/resolv.conf.default
+cp /etc/bind/named.conf.options /etc/bind/named.conf.options.default
 
-IPs=$(cat /etc/resolv.conf | grep nameserver | tr -d 'nameserver ' | tr '\n' ';')
+IPs=$(cat /etc/resolv.conf | grep nameserver | cut -d' ' -f2 | tr '\n' ';')s
 TAB="$(printf '\t')"
 
 tee /etc/bind/named.conf.options >/dev/null <<EOF
