@@ -25,11 +25,17 @@ echo "deb [signed-by=/usr/share/keyrings/opensearch-keyring] https://artifacts.o
 sudo apt-get update
 sudo env OPENSEARCH_INITIAL_ADMIN_PASSWORD=3fKSX6g4ZRd0 apt-get -y install opensearch=2.13.0
 
+cat /etc/opensearch/opensearch.yml | grep "^[^#;]"
+cat /etc/opensearch/jvm.options | grep "^[^#;]"
+cp /etc/opensearch/opensearch.yml{,.default}
+cp /etc/opensearch/jvm.options{,.default}
+
+wget https://raw.githubusercontent.com/konstantait/exam/main/opensearch.yml -O /etc/opensearch/opensearch.yml
+
+sudo sed -i "s|-Xms1g|-Xms4g|g" /etc/opensearch/jvm.options
+sudo sed -i "s|-Xmx1g|-Xmx4g|g" /etc/opensearch/jvm.options
+
 sudo systemctl enable opensearch
 sudo systemctl start opensearch
 sudo systemctl status opensearch
 curl -X GET https://localhost:9200 -u 'admin:3fKSX6g4ZRd0' --insecure
-
-cat /etc/opensearch/opensearch.yml | grep "^[^#;]"
-cp /etc/opensearch/opensearch.yml{,.default}
-
