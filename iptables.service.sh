@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 LOIF=lo
 WAN=enp0s3
 LAN=enp0s8
@@ -8,7 +9,6 @@ NODE1_IP=192.168.100.2
 NODE1_WAN_PORT=2202
 
 IPTABLES=$(which iptables)
-ECHO=$(which echo)
 
 if [[ -z "$IPTABLES" ]]; then
   apt-get update && apt-get -y install iptables
