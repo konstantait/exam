@@ -1,0 +1,22 @@
+acl clients {
+    192.168.100.0/24;
+    localhost;
+    localnets;
+};
+
+options {
+    directory "/var/cache/bind";
+
+    recursion yes;
+    allow-query { clients; };
+
+    forwarders { 8.8.8.8; 8.8.4.4; };
+    forward only;
+    
+    dnssec-enable yes;
+    dnssec-validation yes;
+    // dnssec-validation auto;
+
+    auth-nxdomain no;
+    listen-on-v6 { none; };
+};

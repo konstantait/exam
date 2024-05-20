@@ -12,6 +12,7 @@ iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 
 wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.service.sh -O /root/iptables.service.sh
 wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.service -O /etc/systemd/system/iptables.service
+cat /root/iptables.service.sh | grep "^[^#;]"
 
 chmod +x /root/iptables.service.sh
 systemctl enable iptables.service

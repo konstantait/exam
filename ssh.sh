@@ -1,3 +1,3 @@
-apt-get update && apt-get -y install ssh
+apt-get -y install ssh
 systemctl status sshd
 
