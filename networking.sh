@@ -11,7 +11,7 @@ sudo tee -a /etc/network/interfaces >/dev/null <<EOF
 
 # The secondary network interface
 auto eth1
-iface enp0s8 inet static
+iface eth1 inet static
    address 192.168.100.1
    netmask 255.255.255.0
    network 192.168.100.0
