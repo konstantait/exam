@@ -10,5 +10,6 @@ cp /etc/bind/named.conf.options{,.default}
 
 wget https://raw.githubusercontent.com/konstantait/exam/main/named.conf.options -O /etc/bind/named.conf.options
 
+named-checkconf
 systemctl restart bind9
 systemctl status bind9
