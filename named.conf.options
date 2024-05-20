@@ -6,17 +6,13 @@ acl clients {
 
 options {
     directory "/var/cache/bind";
-
+    
     recursion yes;
     allow-query { clients; };
 
     forwarders { 8.8.8.8; 8.8.4.4; };
     forward only;
     
-    dnssec-enable yes;
-    dnssec-validation yes;
-    // dnssec-validation auto;
-
-    auth-nxdomain no;
+    dnssec-validation auto;
     listen-on-v6 { none; };
 };
