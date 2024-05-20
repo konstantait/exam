@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 LOIF=lo
-WAN=enp0s3
-LAN=enp0s8
+WAN=eth0
+LAN=eth1
 
-WAN_IP=10.102.0.35
+WAN_IP=10.102.0.165
 NODE1_IP=192.168.100.2
 NODE1_WAN_PORT=2202
 
