@@ -5,7 +5,7 @@ cp /etc/network/interfaces{,.default}
 
 ip a
 
-sudo sed -i "s|allow-hotplug eth0|auto eth0|g" /etc/network/interfaces
+# sudo sed -i "s|allow-hotplug eth0|auto eth0|g" /etc/network/interfaces
 
 sudo tee -a /etc/network/interfaces >/dev/null <<EOF
 

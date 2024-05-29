@@ -1,23 +1,34 @@
 #!/usr/bin/env bash
 
-apt-get -y install iptables
+sudo apt-get -y install iptables
 
 cat /etc/sysctl.conf
-cp /etc/sysctl.conf{,.default}
-
-# echo 1 > /proc/sys/net/ipv4/ip_forward
+sudo cp /etc/sysctl.conf{,.default}
 echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
 sysctl -p
 iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 
-wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.service.sh -O /root/iptables.service.sh
-wget https://raw.githubusercontent.com/konstantait/exam/main/iptables.service -O /etc/systemd/system/iptables.service
+wget https://raw.githubusercontent.com/konstantait/exam/main/rules.sh -O /root/rules.sh
+chmod +x /root/rules.sh
+cat /root/rules.sh | grep "^[^#;]"
 
-chmod +x /root/iptables.service.sh
-cat /root/iptables.service.sh | grep "^[^#;]"
+sudo tee /etc/systemd/system/iptables.service > /dev/null <<'EOF'
+[Unit]
+Description=IPtables configuration
+Requires=network.target
+After=network.target
 
-systemctl enable iptables.service
-systemctl status iptables.service
+[Service]
+Type=oneshot
+User=root
+ExecStart=/root/rules.sh
 
-iptables -L
-iptables -t nat -L
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl enable iptables.service
+sudo systemctl status iptables.service
+
+sudo iptables -L
+sudo iptables -t nat -L
