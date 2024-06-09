@@ -1,5 +1,0 @@
-1) install vm, ssh, sudouser -- ssh.sh
-2) upgrade system -- upgrade.sh
-3) extend root part & /var/lib/mysql -- lvm.sh
-4) install & tweak mariadb -- mariadb.sh
-5) install nginx -- nginx.sh
